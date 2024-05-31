@@ -9,8 +9,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.FragmentSwitcher {
+
+    private FragmentManager fm;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +26,32 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Frag
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        FragmentManager fm = getSupportFragmentManager();
+        fm = getSupportFragmentManager();
         fm.beginTransaction().replace(R.id.main, new MainFragment()).commit();
     }
 
     @Override
-    public void switchFragment(Fragment fragment) {
-        FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.main, fragment).commit();
+    public void popFragment() {
+        fm.popBackStack();
     }
+
+    @Override
+    public void switchFragment(Fragment fragment) {
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.main, fragment, fragment.getClass().getName());
+        ft.addToBackStack(fragment.getClass().getName());
+        ft.commit();
+    }
+
+    public void goToProfile() {
+        Fragment profileFragment = fm.findFragmentByTag(ProfileFragment.class.getName());
+        assert profileFragment != null;
+        ((ProfileFragment) profileFragment).setUser(user);
+        popFragment();
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }

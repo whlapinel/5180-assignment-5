@@ -45,6 +45,8 @@ public class ProfileFragment extends Fragment {
         return fragment;
     }
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,10 +76,14 @@ public class ProfileFragment extends Fragment {
             updateBtn.setOnClickListener(v ->{
                 Log.d(TAG, "onCreateView: update button clicked");
                 MainFragment.FragmentSwitcher fragmentSwitcher = (MainFragment.FragmentSwitcher) getActivity();
+                assert fragmentSwitcher != null;
                 fragmentSwitcher.switchFragment(EditUserFragment.newInstance(user));
             });
             return view;
         }
+    }
 
+    public void setUser(User user) {
+        this.user = user;
     }
 }
