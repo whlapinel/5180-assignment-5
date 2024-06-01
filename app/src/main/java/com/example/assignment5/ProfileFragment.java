@@ -29,14 +29,6 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param user User.
-     * @return A new instance of fragment ProfileFragment.
-     */
-
     public static ProfileFragment newInstance(User user) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
@@ -59,8 +51,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Log.d(TAG, "onCreateView: ");
-        Log.d(TAG, "onCreateView: " + "user.name = " + user.name);
             View view = inflater.inflate(R.layout.fragment_profile, container, false);
         if (user == null) {
             return view;
@@ -75,7 +65,7 @@ public class ProfileFragment extends Fragment {
             Button updateBtn = view.findViewById(R.id.profileUpdateBtn);
             updateBtn.setOnClickListener(v ->{
                 Log.d(TAG, "onCreateView: update button clicked");
-                MainFragment.FragmentSwitcher fragmentSwitcher = (MainFragment.FragmentSwitcher) getActivity();
+                FragmentSwitcher fragmentSwitcher = (FragmentSwitcher) getActivity();
                 assert fragmentSwitcher != null;
                 fragmentSwitcher.switchFragment(EditUserFragment.newInstance(user));
             });

@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.FragmentSwitcher {
+public class MainActivity extends AppCompatActivity implements FragmentSwitcher {
 
     private FragmentManager fm;
     User user;

@@ -21,7 +21,7 @@ import android.widget.Toast;
  * create an instance of this fragment.
  */
 public class EditUserFragment extends Fragment {
-    MainFragment.FragmentSwitcher fragmentSwitcher;
+    FragmentSwitcher fragmentSwitcher;
     private static final String USER = "user";
 
 
@@ -55,7 +55,7 @@ public class EditUserFragment extends Fragment {
         if (getArguments() != null) {
             user = getArguments().getParcelable(USER);
         }
-        fragmentSwitcher = (MainFragment.FragmentSwitcher) getActivity();
+        fragmentSwitcher = (FragmentSwitcher) getActivity();
     }
 
     @Override
@@ -90,7 +90,7 @@ public class EditUserFragment extends Fragment {
             cancelBtn.setOnClickListener(v -> {
                 Log.d(TAG, "onCreateView: cancelBtn clicked");
                 Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_SHORT).show();
-                MainFragment.FragmentSwitcher fragmentSwitcher = (MainFragment.FragmentSwitcher) getActivity();
+                FragmentSwitcher fragmentSwitcher = (FragmentSwitcher) getActivity();
                 assert fragmentSwitcher != null;
                 fragmentSwitcher.popFragment();
             });

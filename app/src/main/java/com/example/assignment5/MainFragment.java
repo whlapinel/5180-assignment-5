@@ -22,20 +22,11 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         Button startBtn = view.findViewById(R.id.startBtn);
         startBtn.setOnClickListener(v -> {
-            MainFragment.FragmentSwitcher listener = (MainFragment.FragmentSwitcher) getActivity();
+            FragmentSwitcher listener = (FragmentSwitcher) getActivity();
             assert listener != null;
             listener.switchFragment(new CreateUserFragment());
         });
         return view;
     }
-
-    public interface FragmentSwitcher {
-        void switchFragment(Fragment fragment);
-
-        void popFragment();
-
-        void setUser(User user);
-
-        void goToProfile();
-    }
 }
+
