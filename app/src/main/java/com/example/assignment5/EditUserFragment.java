@@ -15,6 +15,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.assignment5.databinding.FragmentEditUserBinding;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link EditUserFragment#newInstance} factory method to
@@ -61,29 +63,30 @@ public class EditUserFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        FragmentEditUserBinding binding = FragmentEditUserBinding.inflate(inflater, container, false);
         Log.d(TAG, "onCreateView: ");
         Log.d(TAG, "onCreateView: " + "user.name = " + user.name);
-        View view = inflater.inflate(R.layout.fragment_edit_user, container, false);
+        View view = binding.getRoot();
         if (user == null) {
             return view;
         } else {
-            Button submitBtn = view.findViewById(R.id.submitBtn);
-            Button cancelBtn = view.findViewById(R.id.cancelBtn);
-            EditText nameEditInput = view.findViewById(R.id.nameEditInput);
-            EditText emailEditInput = view.findViewById(R.id.emailEditInput);
-            RadioGroup roleEditInput = view.findViewById(R.id.roleEditInput);
+            Button submitBtn = binding.submitBtn;
+            Button cancelBtn = binding.cancelBtn;
+            EditText nameEditInput = binding.nameEditInput;
+            EditText emailEditInput = binding.emailEditInput;
+            RadioGroup roleEditInput = binding.roleEditInput;
             nameEditInput.setText(user.name);
             emailEditInput.setText(user.email);
 
             switch (user.role) {
                 case "Student":
-                    roleEditInput.check(R.id.studentEditRadioBtn);
+                    binding.studentEditRadioBtn.setChecked(true);
                     break;
                 case "Employee":
-                    roleEditInput.check(R.id.employeeEditRadioBtn);
+                    binding.employeeEditRadioBtn.setChecked(true);
                     break;
                 case "Other":
-                    roleEditInput.check(R.id.otherEditRadioBtn);
+                    binding.otherEditRadioBtn.setChecked(true);
                     break;
             }
 

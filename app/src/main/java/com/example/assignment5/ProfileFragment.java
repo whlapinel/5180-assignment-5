@@ -2,6 +2,7 @@ package com.example.assignment5;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.assignment5.databinding.FragmentProfileBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,20 +52,21 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-            View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        FragmentProfileBinding binding = FragmentProfileBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
         if (user == null) {
             return view;
         } else {
             Log.d(TAG, "onCreateView: user is not null");
-            TextView name = view.findViewById(R.id.nameValue);
-            TextView email = view.findViewById(R.id.emailValue);
-            TextView role = view.findViewById(R.id.roleValue);
+            TextView name = binding.nameValue;
+            TextView email = binding.emailValue;
+            TextView role = binding.roleValue;
             name.setText(user.name);
             email.setText(user.email);
             role.setText(user.role);
-            Button updateBtn = view.findViewById(R.id.profileUpdateBtn);
+            Button updateBtn = binding.profileUpdateBtn;
             updateBtn.setOnClickListener(v ->{
                 Log.d(TAG, "onCreateView: update button clicked");
                 FragmentSwitcher listener = (FragmentSwitcher) getActivity();

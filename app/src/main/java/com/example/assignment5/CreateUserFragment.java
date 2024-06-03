@@ -13,6 +13,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.assignment5.databinding.FragmentCreateUserBinding;
+
 
 public class CreateUserFragment extends Fragment {
 
@@ -24,12 +26,12 @@ public class CreateUserFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_create_user, container, false);
-        Button nextBtn = view.findViewById(R.id.nextBtn);
-        EditText nameInput = view.findViewById(R.id.nameCreateInput);
-        EditText emailInput = view.findViewById(R.id.emailCreateInput);
-        RadioGroup role = view.findViewById(R.id.roleCreateInput);
+        FragmentCreateUserBinding binding = FragmentCreateUserBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        Button nextBtn = binding.nextBtn;
+        EditText nameInput = binding.nameCreateInput;
+        EditText emailInput = binding.emailCreateInput;
+        RadioGroup role = binding.roleCreateInput;
 
         nextBtn.setOnClickListener(v -> {
             String name = nameInput.getText().toString();

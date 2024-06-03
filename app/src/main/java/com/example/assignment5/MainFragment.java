@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.assignment5.databinding.FragmentMainBinding;
+
 
 public class MainFragment extends Fragment {
 
@@ -18,9 +20,9 @@ public class MainFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
-        Button startBtn = view.findViewById(R.id.startBtn);
+        FragmentMainBinding binding = FragmentMainBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        Button startBtn = binding.startBtn;
         startBtn.setOnClickListener(v -> {
             FragmentSwitcher listener = (FragmentSwitcher) getActivity();
             assert listener != null;
