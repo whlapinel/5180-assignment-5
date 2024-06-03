@@ -30,5 +30,9 @@ public class MainFragment extends Fragment {
         });
         return view;
     }
+
+    public interface FragmentSwitcher {
+        void switchFragment(Fragment fragment);
+    }
 }
 

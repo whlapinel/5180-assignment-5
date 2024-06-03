@@ -23,7 +23,8 @@ import com.example.assignment5.databinding.FragmentEditUserBinding;
  * create an instance of this fragment.
  */
 public class EditUserFragment extends Fragment {
-    FragmentSwitcher fragmentSwitcher;
+    EditUserFragment.FragmentSwitcher listener;
+
     private static final String USER = "user";
 
 
@@ -57,13 +58,14 @@ public class EditUserFragment extends Fragment {
         if (getArguments() != null) {
             user = getArguments().getParcelable(USER);
         }
-        fragmentSwitcher = (FragmentSwitcher) getActivity();
+        listener = (EditUserFragment.FragmentSwitcher) getActivity();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         FragmentEditUserBinding binding = FragmentEditUserBinding.inflate(inflater, container, false);
+        EditUserFragment.FragmentSwitcher listener = (EditUserFragment.FragmentSwitcher) getActivity();
         Log.d(TAG, "onCreateView: ");
         Log.d(TAG, "onCreateView: " + "user.name = " + user.name);
         View view = binding.getRoot();
@@ -92,9 +94,8 @@ public class EditUserFragment extends Fragment {
 
             cancelBtn.setOnClickListener(v -> {
                 Log.d(TAG, "onCreateView: cancelBtn clicked");
-                FragmentSwitcher listener = (FragmentSwitcher) getActivity();
                 assert listener != null;
-                listener.popFragment();
+                listener.popFragmentEdit();
             });
 
             submitBtn.setOnClickListener(v -> {
@@ -108,10 +109,17 @@ public class EditUserFragment extends Fragment {
                 RadioButton selectedRadioButton = view.findViewById(selectedRadioId);
                 String role = selectedRadioButton.getText().toString();
                 User updatedUser = new User(name, email, role);
-                fragmentSwitcher.setUser(updatedUser);
-                fragmentSwitcher.goToUpdatedProfile();
+                listener.setUserEdit(updatedUser);
+                listener.goToUpdatedProfile();
             });
         }
         return view;
+    }
+
+    public interface FragmentSwitcher {
+        void setUserEdit(User user);
+
+        void goToUpdatedProfile();
+        void popFragmentEdit();
     }
 }

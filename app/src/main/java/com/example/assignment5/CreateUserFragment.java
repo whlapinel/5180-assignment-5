@@ -48,11 +48,16 @@ public class CreateUserFragment extends Fragment {
             RadioButton selectedRadioButton = view.findViewById(selectedId);
             String roleString = selectedRadioButton.getText().toString();
             User user = new User(name, email, roleString);
-            FragmentSwitcher listener = (FragmentSwitcher) getActivity();
+            FragmentSwitcher listener = (CreateUserFragment.FragmentSwitcher) getActivity();
             assert listener != null;
             listener.setUser(user);
             listener.newProfileFragment(user);
         });
         return view;
+    }
+    public interface FragmentSwitcher {
+        void newProfileFragment(User user);
+        void setUser(User user);
+
     }
 }

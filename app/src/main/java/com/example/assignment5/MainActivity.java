@@ -11,7 +11,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class MainActivity extends AppCompatActivity implements FragmentSwitcher {
+import com.example.assignment5.databinding.FragmentMainBinding;
+
+public class MainActivity extends AppCompatActivity implements
+        MainFragment.FragmentSwitcher,
+        CreateUserFragment.FragmentSwitcher,
+        ProfileFragment.FragmentSwitcher,
+        EditUserFragment.FragmentSwitcher {
 
     private FragmentManager fm;
     User user;
@@ -31,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements FragmentSwitcher 
     }
 
     @Override
-    public void popFragment() {
+    public void popFragmentEdit() {
         fm.popBackStack();
     }
 
@@ -43,9 +49,21 @@ public class MainActivity extends AppCompatActivity implements FragmentSwitcher 
         ft.commit();
     }
 
+    public void switchProfileFragment(Fragment fragment) {
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.main, fragment, fragment.getClass().getName());
+        ft.addToBackStack(fragment.getClass().getName());
+        ft.commit();
+    }
+
     public void newProfileFragment(User user) {
         Fragment profileFragment = ProfileFragment.newInstance(user);
         switchFragment(profileFragment);
+    }
+
+    @Override
+    public void setUserEdit(User user) {
+        this.user = user;
     }
 
     public void goToUpdatedProfile() {
