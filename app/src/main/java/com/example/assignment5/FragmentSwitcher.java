@@ -9,5 +9,7 @@ public interface FragmentSwitcher {
 
     void setUser(User user);
 
-    void goToProfile();
+    void newProfileFragment(User user);
+
+    void goToUpdatedProfile();
 }

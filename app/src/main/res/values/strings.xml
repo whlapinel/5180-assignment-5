@@ -1,6 +1,7 @@
 <resources>
     <string name="create_user_title">Create User Info</string>
-    <string name="main_welcom_title">Welcome</string>
+    <string name="edit_user_title">Edit User Info</string>
+    <string name="main_welcome_title">Welcome</string>
     <string name="app_name">assignment3</string>
     <string name="name_label">Name: </string>
     <string name="email_label">Email: </string>
@@ -11,6 +12,7 @@
     <string name="student_radio_text">Student</string>
     <string name="employee_radio_text">Employee</string>
     <string name="other_radio_text">Other</string>
+    <string name="next_btn_text">Next</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

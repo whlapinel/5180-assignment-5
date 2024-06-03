@@ -89,10 +89,9 @@ public class EditUserFragment extends Fragment {
 
             cancelBtn.setOnClickListener(v -> {
                 Log.d(TAG, "onCreateView: cancelBtn clicked");
-                Toast.makeText(getActivity(), "Cancelled", Toast.LENGTH_SHORT).show();
-                FragmentSwitcher fragmentSwitcher = (FragmentSwitcher) getActivity();
-                assert fragmentSwitcher != null;
-                fragmentSwitcher.popFragment();
+                FragmentSwitcher listener = (FragmentSwitcher) getActivity();
+                assert listener != null;
+                listener.popFragment();
             });
 
             submitBtn.setOnClickListener(v -> {
@@ -107,7 +106,7 @@ public class EditUserFragment extends Fragment {
                 String role = selectedRadioButton.getText().toString();
                 User updatedUser = new User(name, email, role);
                 fragmentSwitcher.setUser(updatedUser);
-                fragmentSwitcher.goToProfile();
+                fragmentSwitcher.goToUpdatedProfile();
             });
         }
         return view;

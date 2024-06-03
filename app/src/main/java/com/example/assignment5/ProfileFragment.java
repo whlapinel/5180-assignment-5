@@ -65,9 +65,9 @@ public class ProfileFragment extends Fragment {
             Button updateBtn = view.findViewById(R.id.profileUpdateBtn);
             updateBtn.setOnClickListener(v ->{
                 Log.d(TAG, "onCreateView: update button clicked");
-                FragmentSwitcher fragmentSwitcher = (FragmentSwitcher) getActivity();
-                assert fragmentSwitcher != null;
-                fragmentSwitcher.switchFragment(EditUserFragment.newInstance(user));
+                FragmentSwitcher listener = (FragmentSwitcher) getActivity();
+                assert listener != null;
+                listener.switchFragment(EditUserFragment.newInstance(user));
             });
             return view;
         }

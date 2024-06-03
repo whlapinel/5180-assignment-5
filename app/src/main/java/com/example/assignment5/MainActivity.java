@@ -43,11 +43,16 @@ public class MainActivity extends AppCompatActivity implements FragmentSwitcher 
         ft.commit();
     }
 
-    public void goToProfile() {
+    public void newProfileFragment(User user) {
+        Fragment profileFragment = ProfileFragment.newInstance(user);
+        switchFragment(profileFragment);
+    }
+
+    public void goToUpdatedProfile() {
         Fragment profileFragment = fm.findFragmentByTag(ProfileFragment.class.getName());
         assert profileFragment != null;
         ((ProfileFragment) profileFragment).setUser(user);
-        popFragment();
+        fm.popBackStack();
     }
 
     public void setUser(User user) {

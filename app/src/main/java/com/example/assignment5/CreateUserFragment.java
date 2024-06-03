@@ -13,11 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CreateUserFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class CreateUserFragment extends Fragment {
 
 
@@ -50,10 +46,10 @@ public class CreateUserFragment extends Fragment {
             RadioButton selectedRadioButton = view.findViewById(selectedId);
             String roleString = selectedRadioButton.getText().toString();
             User user = new User(name, email, roleString);
-            Fragment profileFragment = ProfileFragment.newInstance(user);
             FragmentSwitcher listener = (FragmentSwitcher) getActivity();
             assert listener != null;
-            listener.switchFragment(profileFragment);
+            listener.setUser(user);
+            listener.newProfileFragment(user);
         });
         return view;
     }
